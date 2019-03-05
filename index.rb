@@ -69,7 +69,7 @@ occasion_cat = [
     hangin_garret
 ]
 
-# Create an array of moods
+# Create an array of moods to print
 moods = [
     "1. On top of the world", 
     "2. Blue", 
@@ -78,7 +78,7 @@ moods = [
     "5. Rage", 
     "6. A little high"
 ]
-# Create an array of occasions
+# Create an array of occasions to print
 occasions = [
     "1. Netflix & Chill", 
     "2. Dance Battle", 
