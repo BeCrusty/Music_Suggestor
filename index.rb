@@ -3,8 +3,22 @@
 on_top = ["Happy", "Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs"]
 
 #create a list of each category for Mood & Occasion
-mood_cat = [on_top, blue, in_love, sleep, rage, high]
-occasion_cat = [netflix, dance, board_game, cosplay, fancy_dinner, hangin_garret]
+mood_cat = [
+    on_top, 
+    blue, 
+    in_love, 
+    sleep, 
+    rage, 
+    high
+]
+occasion_cat = [
+    netflix, 
+    dance, 
+    board_game, 
+    cosplay, 
+    fancy_dinner, 
+    hangin_garret
+]
 #create a hash that contains Mood & Occasion lists
 music_list = { :mood_cat => mood_cat, :occasion_cat => occasion_cat}
 
