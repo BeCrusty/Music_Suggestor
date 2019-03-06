@@ -1,7 +1,7 @@
 class Jukebox
     attr_reader :choice1, :choice2
-    def initialize(name)
-        @name = name
+    def initialize
+        @user_name = nil
 
         # Becomes 1 or 2 when user chooses mood or occasion, is nil so it can become a variable
         @choice1 = nil
@@ -29,6 +29,8 @@ class Jukebox
             "6. Hangin' Out With Garret"
         ]
         
+        # A long series of arrays containing the songs associated with each mood or occasion
+        # Moods
         on_top = [
             ["Happy", "Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs"],
             ["Hawaiian Roller Coaster Ride", "Mark Keali'i Ho'omalu, Kamehameha Schools Children's Chorus", "https://www.youtube.com/watch?v=KaLFZj3wPsc"]
@@ -54,7 +56,7 @@ class Jukebox
             ["Party in My Tummy", "Yo Gabba Gabba!", "https://www.youtube.com/watch?v=6Os-CACRwM8"]
         ]
         
-        
+        #  Occasions
         netflix = [
             ["Can't Get Enough Of Your Love Baby", "Barry White", "https://www.youtube.com/watch?v=x0I6mhZ5wMw"],
             ["My Cherie Amour", "Stevie Wonder", "https://www.youtube.com/watch?v=NW0YcO5P3OM"]
@@ -80,7 +82,7 @@ class Jukebox
             ["I Just Want To Dance With You", "George Strait", "https://www.youtube.com/watch?v=HxxhNAyj3QQ"]
         ]
 
-        # create a list of each category for Mood & Occasion
+        # create an array with each category for Mood & Occasion
         @mood_cat = [
             on_top, 
             blue, 
@@ -99,11 +101,18 @@ class Jukebox
         ]
         @list_choice = [@mood_cat, @occasion_cat]
     end
+    # greets user in terminal and asks for name
+    def greeting
+        puts "Welcome to Ben & Mike's Song Suggestor!"
+        puts "What can we call you by"
+        # user_name = user input
+        @user_name = gets.chomp
+    end
 
     def choose
         # until loops until @choice1 = 1 or 2
         # inside the loops it asks the user to choose 1 or 2
-        puts "Hello Ben! Would you like to select a song for a Mood or an Occasion? Input 1 for Mood or 2 for Occasion"
+        puts "Hello #{@user_name}! Would you like to select a song for a Mood or an Occasion? Input 1 for Mood or 2 for Occasion"
         until [1, 2].include? @choice1
             puts "1. Mood \n2. Occasion "
             @choice1 = gets.to_i
@@ -155,27 +164,8 @@ class Jukebox
         # songs variable = moods/occasions arrays
         songs = category[@choice2]
         # song variable looks inside selected mood_cat or occasion_cat and picks a song
-        song = songs[0]
+        song = songs[(rand() * songs.length).to_i]
         puts "Ben & Mike suggest: #{song[0]} by #{song[1]}. You can listen to it here: #{song[2]}"
     end
 end
 
-# instantiate class
-jukebox = Jukebox.new "Tester"
-# run choose method which selects mood or occasion
-jukebox.choose
-# tells us if prev choice was mood or occasion
-choice1 = jukebox.choice1
-# if mood, runs choose_mood method
-if choice1 == 1
-    jukebox.choose_mood
-    # method choice2 returns mood chosen
-    jukebox.choice2
-# if occasion, runs choose_occ method
-else choice1 == 2
-    jukebox.choose_occ
-    # method choice2 returns occasion chosen
-    jukebox.choice2
-end
-# runs suggest_song method which looks at chosen mood/occasion and outputs song info
-jukebox.suggest_song
