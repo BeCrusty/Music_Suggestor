@@ -66,6 +66,7 @@ while exposing them to new music.”*
   5. Make selections from the menus that are presented.
 ![](https://github.com/BeCrusty/Music_Suggestor/blob/master/docs/App%20Screenshots/ss3.png "")
   6. The terminal will provide categories for 'Mood' or 'Occasion'.
+  
 ![](https://github.com/BeCrusty/Music_Suggestor/blob/master/docs/App%20Screenshots/ss4.png "")
 ![](https://github.com/BeCrusty/Music_Suggestor/blob/master/docs/App%20Screenshots/ss5.png "")
   7. A song with the artist's name and a YouTube link will be suggested based on the user’s category selection.
