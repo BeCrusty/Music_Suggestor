@@ -1,3 +1,5 @@
+require "colorize"
+
 class Jukebox
     attr_reader :choice1, :choice2
     def initialize
@@ -103,18 +105,21 @@ class Jukebox
     end
     # greets user in terminal and asks for name
     def greeting
-        puts "Welcome to Ben & Mike's Song Suggestor!"
-        puts "What can we call you by"
+        puts "Welcome to Ben & Mike's Song Suggestor!".colorize(:light_magenta)
+        puts "What can we call you by?".colorize(:light_cyan)
         # user_name = user input
-        @user_name = gets.chomp
+        @user_name = gets.chomp.colorize(:light_white)
     end
 
     def choose
         # until loops until @choice1 = 1 or 2
         # inside the loops it asks the user to choose 1 or 2
-        puts "Hello #{@user_name}! Would you like to select a song for a Mood or an Occasion? Input 1 for Mood or 2 for Occasion"
+        puts "Hello #{@user_name}! Would you like to select a song for a Mood or an Occasion? "
+        puts "\n"
         until [1, 2].include? @choice1
-            puts "1. Mood \n2. Occasion "
+            puts "  1. Mood".colorize(:light_red)
+            puts "  2. Occasion".colorize(:light_yellow)
+            puts "\nInput the number of your choice."
             @choice1 = gets.to_i
 
             # If the user has input something other than 1 or 2 it will print this error statement
@@ -127,9 +132,11 @@ class Jukebox
     def choose_mood
         # until @choice2 = 1 to length of moods(6), keep looping
         # Inside the loops it keeps asking the user to select from a numbered list
-        puts "Are you feeling:"
+        puts "\nAre you feeling:"
+        puts "\n"
         until (1..@moods.length).include? @choice2
-            @moods.each do |item| puts item end
+            @moods.each do |item| puts "  " + item end
+            puts "Input the number of your choice."
             @choice2 = gets.to_i
 
             # if choice2 != 1 to length of moods(6) print err msg
@@ -143,8 +150,10 @@ class Jukebox
     # Inside the loops it keeps asking the user to select from a numbered list
     def choose_occ
         puts "What's the occasion?"
+        puts "\n"
         until (1..@occasions.length).include? @choice2
-            @occasions.each do |item| puts item end
+            @occasions.each do |item| puts "  " +  item end
+            puts "\nInput the number of your choice:"
             @choice2 = gets.to_i
 
             # if choice2 != 1 to length of moods(6) print err msg
@@ -165,7 +174,8 @@ class Jukebox
         songs = category[@choice2]
         # song variable looks inside selected mood_cat or occasion_cat and picks a song
         song = songs[(rand() * songs.length).to_i]
-        puts "Ben & Mike suggest: #{song[0]} by #{song[1]}. You can listen to it here: #{song[2]}"
+        puts "\nBen & Mike suggest: #{song[0].colorize(:light_white)} by #{song[1].colorize(:light_white)}."
+        puts "You can listen to it here: #{song[2].colorize(:light_white)}"
     end
 end
 
