@@ -38,6 +38,7 @@ class Jukebox
         ]
         
         # A long series of arrays containing the songs associated with each mood or occasion
+
         # Moods
         on_top = [
             ["Happy", "Pharrell Williams", "https://www.youtube.com/watch?v=ZbZSe6N_BXs"],
@@ -123,8 +124,8 @@ class Jukebox
         puts "Hello #{@user_name}! Would you like to select a song for a Mood or an Occasion? "
         puts "\n"
         until [1, 2].include? @choice1
-            puts "  1. Mood".colorize(:light_red)
-            puts "  2. Occasion".colorize(:light_yellow)
+            puts("  1. " + " Mood".colorize(:light_red))
+            puts("  2." + " Occasion".colorize(:light_yellow))
             puts "\nInput the number of your choice."
             @choice1 = gets.to_i
 
@@ -139,11 +140,11 @@ class Jukebox
     def choose_mood
         # until @choice2 = 1 to length of moods(6), keep looping
         # Inside the loops it keeps asking the user to select from a numbered list
-        puts "\nAre you feeling:"
+        puts "Are you feeling:"
         puts "\n"
         until (1..@moods.length).include? @choice2
-            @moods.each do |item| puts "  " + item end
-            puts "Input the number of your choice."
+            @moods.each do |item| puts("  " + item.colorize(:light_red)) end
+            puts "\nInput the number of your choice."
             @choice2 = gets.to_i
 
             # if choice2 != 1 to length of moods(6) print err msg
@@ -160,7 +161,7 @@ class Jukebox
         puts "What's the occasion?"
         puts "\n"
         until (1..@occasions.length).include? @choice2
-            @occasions.each do |item| puts "  " +  item end
+            @occasions.each do |item| puts("  " + item.colorize(:light_yellow)) end
             puts "\nInput the number of your choice:"
             @choice2 = gets.to_i
 
@@ -191,7 +192,8 @@ class Jukebox
         puts "\nWould you like us to suggest another song?"
         #until choice3 is = 1 or 2 ask for input
         until [1, 2].include? @choice3
-            puts "\n  1. Yes \n  2. No"
+            puts("\n  1. " + "Yes".colorize(:light_green))
+            puts("  2. " + "No".colorize(:light_red))
             puts "\nInput 1 for Yes or 2 to exit."
             @choice3 = gets.to_i
             if @choice3 == 1

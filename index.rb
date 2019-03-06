@@ -27,4 +27,3 @@ while jukebox.jukebox_running
     jukebox.start_again?
 end
 
-
