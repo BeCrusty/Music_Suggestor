@@ -1,7 +1,7 @@
 require "colorize"
 
 class Jukebox
-    attr_reader :choice1, :choice2
+    attr_reader :choice1, :choice2, :jukebox_running
     def initialize
         @user_name = nil
 
@@ -10,6 +10,12 @@ class Jukebox
 
         # Becomes 1-6 when user chooses category under mood/occasion, is nil so it can become a variable
         @choice2 = nil
+
+        # Do we choose another song?
+        @choice3 = nil
+
+        # Initiates the jukebox loop when we open the class
+        @jukebox_running = true
 
         # Create an array of moods to print
         @moods = [
@@ -125,6 +131,7 @@ class Jukebox
             # If the user has input something other than 1 or 2 it will print this error statement
             if ![1, 2].include? @choice1
                 puts "Sorry, I couldn't read that input, please enter the number of your choice."
+                puts "\n"
             end
         end
     end
@@ -142,6 +149,7 @@ class Jukebox
             # if choice2 != 1 to length of moods(6) print err msg
             if !(1..@moods.length).include? @choice2
                 puts "Sorry, I couldn't read that input, please enter the number of your choice."
+                puts "\n"
             end
         end
     end
@@ -159,6 +167,7 @@ class Jukebox
             # if choice2 != 1 to length of moods(6) print err msg
             if !(1..@occasions.length).include? @choice2
                 puts "Sorry, I couldn't read that input, please enter the number of your choice."
+                puts "\n"
             end
         end
     end
@@ -176,6 +185,29 @@ class Jukebox
         song = songs[(rand() * songs.length).to_i]
         puts "\nBen & Mike suggest: #{song[0].colorize(:light_white)} by #{song[1].colorize(:light_white)}."
         puts "You can listen to it here: #{song[2].colorize(:light_white)}"
+    end
+
+    def start_again?
+        puts "\nWould you like us to suggest another song?"
+        #until choice3 is = 1 or 2 ask for input
+        until [1, 2].include? @choice3
+            puts "\n  1. Yes \n  2. No"
+            puts "\nInput 1 for Yes or 2 to exit."
+            @choice3 = gets.to_i
+            if @choice3 == 1
+                @jukebox_running = true
+            elsif @choice3 == 2
+                @jukebox_running = false
+            else 
+                puts "Sorry, I couldn't read that input, please enter the number of your choice."
+                puts "\n"   
+            end
+            #have to set choice1 and choice2 values to nil because it was predefined
+            @choice1 = nil
+            @choice2 = nil
+        end
+        #have to set choice3 to nil because it was predefined, so we can get a new input when we loop
+        @choice3 = nil
     end
 end
 
